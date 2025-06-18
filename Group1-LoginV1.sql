@@ -94,4 +94,24 @@ CREATE TABLE employees (
 
 -- COMMIT;
 
+
+
 -- Final del script. La base de datos está lista para ser poblada.
+
+-- ================================================================
+-- El 17 de Junio agregamos las tablas de attendance
+-- ================================================================
+
+CREATE TABLE attendance_status (
+    status_id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE attendance (
+    attendance_id SERIAL PRIMARY KEY,
+    employee_id INT REFERENCES employee(employee_id),
+    date DATE NOT NULL,
+    status_id INT REFERENCES attendance_status(status_id),
+    check_in TIME,
+    check_out TIME
+);
